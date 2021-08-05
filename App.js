@@ -8,7 +8,7 @@ import StartGameScreen from './screens/StartGameScreen';
 export default function App() {
   return (
     <View style={styles.screen}>
-      <Header title="Descobridor V1"/>
+      <Header title="Descobridor"/>
       <StartGameScreen />
     </View>
   );

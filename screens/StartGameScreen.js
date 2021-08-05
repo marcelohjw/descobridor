@@ -13,12 +13,16 @@ const StartGameScreen = props => {
         setEnteredValue(inputText.replace(/[^0-9]/g, ''));
     };
 
+    const resetNewValue = () => {
+        setEnteredValue('');
+    };
+
     return(
         <TouchableWithoutFeedback onPress={() => {
                 Keyboard.dismiss();
             }}>
             <View style={styles.screen}>
-                <Text style={styles.title}>Começar!</Text>
+                <Text style={styles.title}>Descobrirei o número que você pensa</Text>
                 <Card style={styles.inputContainer}>
                     <Text>Coloque um número</Text>
                     <Input style={styles.input} 
@@ -31,7 +35,11 @@ const StartGameScreen = props => {
                     value={enteredValue} />
                     <View style={styles.buttonsContainer}>
                         <View style={styles.button}>
-                            <Button title="Recomeçar" color={colors.secondary}/>
+                            <Button 
+                                title="Recomeçar" 
+                                color={colors.secondary}
+                                onPress={resetNewValue}
+                            />
                         </View>
                         <View style={styles.button}>
                             <Button title="Confirmar" color={colors.primary}/>
