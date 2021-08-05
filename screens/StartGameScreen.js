@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 
 import Card from '../components/Card';
 import Input from '../components/Input';
@@ -21,7 +21,10 @@ const StartGameScreen = props => {
 
     const confirmInputHandler = () => {
         const chosenNumber = parseInt(enteredValue);
-        if (chosenNumber === NaN || chosenNumber <= 0 || chosenNumber > 99) {
+        if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+            Alert.alert("Número inválido!", "O número precisa estar entre 1 e 99.", 
+            [{text: 'Entendido', style: 'destructive', onPress: resetNewValue}]
+            );
             return;
         }
 
@@ -34,7 +37,7 @@ const StartGameScreen = props => {
     let confirmedOutput;
 
     if (confirmed) {
-        confirmedOutput = <Text style={styles.presentedNumber}>Número apresentado: {selectedNumber}</Text>
+        confirmedOutput = <Text style={styles.presentedNumber}>Número colocado: {selectedNumber}</Text>
     }
 
     return(
@@ -42,7 +45,7 @@ const StartGameScreen = props => {
                 Keyboard.dismiss();
             }}>
             <View style={styles.screen}>
-                <Text style={styles.title}>Descobrirei o número que você pensa</Text>
+                <Text style={styles.title}>Descubra meu número</Text>
                 <Card style={styles.inputContainer}>
                     <Text>Coloque um número</Text>
                     <Input style={styles.input} 
