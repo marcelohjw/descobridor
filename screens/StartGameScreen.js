@@ -8,6 +8,8 @@ import colors from '../constants/colors';
 const StartGameScreen = props => {
 
     const [enteredValue, setEnteredValue] = useState('');
+    const [confirmed, setConfirmed] = useState(false);
+    const [selectedNumber, setSelectedNumber] = useState();
 
     const numberInputHandler = inputText => {
         setEnteredValue(inputText.replace(/[^0-9]/g, ''));
@@ -16,6 +18,24 @@ const StartGameScreen = props => {
     const resetNewValue = () => {
         setEnteredValue('');
     };
+
+    const confirmInputHandler = () => {
+        const chosenNumber = parseInt(enteredValue);
+        if (chosenNumber === NaN || chosenNumber <= 0 || chosenNumber > 99) {
+            return;
+        }
+
+        setConfirmed(true);
+        setSelectedNumber(chosenNumber);
+        setEnteredValue('');
+        
+    };
+
+    let confirmedOutput;
+
+    if (confirmed) {
+        confirmedOutput = <Text style={styles.presentedNumber}>Número apresentado: {selectedNumber}</Text>
+    }
 
     return(
         <TouchableWithoutFeedback onPress={() => {
@@ -42,10 +62,15 @@ const StartGameScreen = props => {
                             />
                         </View>
                         <View style={styles.button}>
-                            <Button title="Confirmar" color={colors.primary}/>
+                            <Button 
+                                title="Confirmar" 
+                                color={colors.primary}
+                                onPress={confirmInputHandler}
+                            />
                         </View>
                     </View>
                 </Card>
+                {confirmedOutput}
             </View>
         </TouchableWithoutFeedback>
     );
@@ -78,6 +103,9 @@ const styles = StyleSheet.create({
     input: {
         width: '10%',
         textAlign: 'center'
+    },
+    presentedNumber: {
+        paddingTop: '5%'
     }
 });
 
