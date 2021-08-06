@@ -18,6 +18,7 @@ const StartGameScreen = props => {
 
     const resetNewValue = () => {
         setEnteredValue('');
+        setSelectedNumber();
     };
 
     const confirmInputHandler = () => {
@@ -53,7 +54,7 @@ const StartGameScreen = props => {
                 Keyboard.dismiss();
             }}>
             <View style={styles.screen}>
-                <Text style={styles.title}>Descubra meu número</Text>
+                <Text style={styles.title}>Vou descobrir seu número</Text>
                 <Card style={styles.inputContainer}>
                     <Text>Coloque um número</Text>
                     <Input style={styles.input} 
