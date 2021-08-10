@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Button, TouchableWithoutFeedback, Keyboard, Ale
 import Card from '../components/Card';
 import Input from '../components/Input';
 import NumberContainer from '../components/NumberContainer';
+import BodyText from '../components/BodyText';
 import colors from '../constants/colors';
 
 const StartGameScreen = props => {
@@ -56,7 +57,7 @@ const StartGameScreen = props => {
             <View style={styles.screen}>
                 <Text style={styles.title}>Vou descobrir seu número</Text>
                 <Card style={styles.inputContainer}>
-                    <Text>Coloque um número</Text>
+                    <BodyText>Coloque um número</BodyText>
                     <Input style={styles.input} 
                     blurOnSubmit 
                     autoCapitalize="none" 
