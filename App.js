@@ -10,6 +10,11 @@ export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [tentativas, setTentativas] = useState(0);
 
+  const startNewGameHandler = () => {
+    setTentativas(0);
+    setUserNumber(null);
+  };
+
   const startGameHandler = (selectedNumber) => {
     setUserNumber(selectedNumber);
     setTentativas(0);
@@ -24,7 +29,7 @@ export default function App() {
   if (userNumber && tentativas <= 0) {
     content = <GameScreen userChoice={userNumber} onGameOver={gameOverHandler}/>
   } else if(tentativas > 0) {
-    content = <GameOverScreen />
+    content = <GameOverScreen tentativas={tentativas} userNumber={userNumber} onRestart={startNewGameHandler}/>
   }
 
   return (
