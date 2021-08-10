@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
+import DefaultStyles from '../constants/default-styles';
+
 const GameOverScreen = props => {
     return (
         <View style={styles.screen}>
-            <Text>Fim de jogo!</Text>
+            <Text style={DefaultStyles.bodyText}>Fim de jogo!</Text>
             <Text>Número de tentativas: {props.tentativas}</Text>
             <Text>O número escolhido foi: {props.userNumber}</Text>
             <Button title="Novo Jogo" onPress={props.onRestart}/>
