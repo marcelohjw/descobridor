@@ -57,7 +57,7 @@ const StartGameScreen = props => {
             <View style={styles.screen}>
                 <Text style={styles.title}>Vou descobrir seu número</Text>
                 <Card style={styles.inputContainer}>
-                    <Text>Coloque um número</Text>
+                    <Text>Coloque um número para eu adivinhar</Text>
                     <Input style={styles.input} 
                     blurOnSubmit 
                     autoCapitalize="none" 
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        marginVertical: 10,
+        marginVertical: 15,
         //fontFamily: 'open-sans'
     },
     inputContainer: {

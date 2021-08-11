@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Button, Image } from 'react-native';
 import BodyText from '../components/BodyText';
 import TitleText from '../components/TitleText';
 import DefaultStyles from '../constants/default-styles';
+import colors from '../constants/colors';
 
 const GameOverScreen = props => {
     return (
@@ -16,7 +17,7 @@ const GameOverScreen = props => {
                     resizeMode="cover"
                 />
             </View>
-            <BodyText>Número de tentativas: {props.tentativas}</BodyText>
+            <BodyText>Acertei em {props.tentativas} tentativas</BodyText>
             <BodyText>O número escolhido foi: {props.userNumber}</BodyText>
             <Button title="Novo Jogo" onPress={props.onRestart}/>
         </View>
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
         height: 300,
         borderRadius: 150,
         borderWidth: 3,
-        borderColor: 'black',
+        borderColor: colors.primary,
         marginVertical: 10
     },
     image: {
