@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Button, TouchableWithoutFeedback, Keyboard, Ale
 import Card from '../components/Card';
 import Input from '../components/Input';
 import NumberContainer from '../components/NumberContainer';
-import BodyText from '../components/BodyText';
+import MainButton from '../components/MainButton';
 import colors from '../constants/colors';
 
 const StartGameScreen = props => {
@@ -47,7 +47,7 @@ const StartGameScreen = props => {
             <Card style={styles.presentedNumber}>
                 <Text>Número colocado</Text>
                 <NumberContainer>{selectedNumber}</NumberContainer>
-                <Button title="Iniciar" onPress={() => props.onStartGame(selectedNumber)}/>
+                <MainButton onPress={() => props.onStartGame(selectedNumber)}>Iniciar</MainButton>
             </Card>
         );
     }
