@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, Alert, Image } from 'react-native';
+import { View, Text, StyleSheet, Alert, Image, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import NumberContainer from '../components/NumberContainer';
@@ -19,9 +19,9 @@ const generateRandomBetween = (min, max, exclude) => {
 };
 
 const GameScreen = props => {
-    const [currentGuess, setCurrentGuess] = useState(generateRandomBetween(1, 100, props.userChoice));
-
-    const [tent, setTent] = useState(0);
+    const initialTent = generateRandomBetween(1, 100, props.userChoice)
+    const [currentGuess, setCurrentGuess] = useState(initialTent);
+    const [tents, setTent] = useState([initialTent]);
     const currentLow = useRef(1);
     const currentHigh = useRef(100);
 
@@ -29,7 +29,7 @@ const GameScreen = props => {
 
     useEffect(() => {
         if(currentGuess === userChoice) {
-            onGameOver(tent);
+            onGameOver(tents.length);
         }
     }, [currentGuess, userChoice, onGameOver]);
 
@@ -42,11 +42,12 @@ const GameScreen = props => {
         if (direction === 'menor') {
             currentHigh.current = currentGuess;
         } else {
-            currentLow.current = currentGuess;
+            currentLow.current = currentGuess + 1;
         }
         const nextNumber = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess);
         setCurrentGuess(nextNumber);
-        setTent(curTent => curTent + 1);
+        //setTent(curTent => curTent + 1);
+        setTent(curTents => [nextNumber ,...curTents]);
     };
 
     return (
@@ -76,6 +77,9 @@ const GameScreen = props => {
                     />
                 </MainButton>
             </Card>
+            <ScrollView>
+                {tents.map(tentx => <View key={tentx}><Text>{tentx}</Text></View>)}
+            </ScrollView>
         </View>
     );
 };
@@ -94,7 +98,8 @@ const styles = StyleSheet.create({
         maxWidth: '80%'
     },
     imageContainer: {
-        flex: 0.5
+        flex: 0.5,
+        paddingBottom: 150
     },
     image: {
         width: 250,
