@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, Button, Alert, Image } from 'react-native';
 
 import NumberContainer from '../components/NumberContainer';
+import MainButton from '../components/MainButton';
 import Card from '../components/Card';
 import DefaultStyles from '../constants/default-styles';
 
@@ -59,8 +60,8 @@ const GameScreen = props => {
             <Text style={DefaultStyles.title}>Meu chute</Text>
             <NumberContainer>{currentGuess}</NumberContainer>
             <Card style={styles.buttonContainer}>
-                <Button title="Menor" onPress={nextGuessHandler.bind(this, 'menor')}/>
-                <Button title="Maior" onPress={nextGuessHandler.bind(this, 'maior')}/>
+                <MainButton onPress={nextGuessHandler.bind(this, 'menor')}>Menor</MainButton>
+                <MainButton onPress={nextGuessHandler.bind(this, 'maior')}>Maior</MainButton>
             </Card>
         </View>
     );

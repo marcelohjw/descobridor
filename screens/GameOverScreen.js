@@ -3,13 +3,26 @@ import { View, Text, StyleSheet, Button, Image } from 'react-native';
 
 import BodyText from '../components/BodyText';
 import TitleText from '../components/TitleText';
+import MainButton from '../components/MainButton';
 import DefaultStyles from '../constants/default-styles';
 import colors from '../constants/colors';
 
 const GameOverScreen = props => {
+
+    let finalText = "Achei muito fácil!"
+
+    if(props.tentativas >= 6) {
+        finalText = "Talvez na próxima seja mais difícil..";
+    }
+
+    if (props.tentativas >= 10) {
+        finalText = "Ralei pra adivinhar esse! boa!";
+    }
+
     return (
         <View style={styles.screen}>
             <TitleText style={DefaultStyles.bodyText}>Fim de jogo</TitleText>
+            <BodyText style={styles.finalText}>{finalText}</BodyText>
             <View style={styles.imageContainer}>
                 <Image 
                     //source={require('../assets/success.png')}
@@ -22,7 +35,7 @@ const GameOverScreen = props => {
                 <BodyText>Acertei em <Text style={styles.tentativas}>{props.tentativas}</Text> tentativas</BodyText>
                 <BodyText>O número escolhido foi: {props.userNumber}</BodyText>
             </View>
-            <Button title="Novo Jogo" onPress={props.onRestart}/>
+            <MainButton onPress={props.onRestart}>Novo Jogo</MainButton>
         </View>
     );
 };
@@ -54,6 +67,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 5
+    },
+    finalText: {
+        marginVertical: 5
     }
 });
 
