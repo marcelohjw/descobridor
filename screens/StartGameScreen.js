@@ -39,8 +39,10 @@ const StartGameScreen = props => {
     };
 
     let confirmedOutput;
+    let computerText = 'Vou descobrir seu número';
 
     if (confirmed) {
+        computerText = '';
         confirmedOutput = (
             <Card style={styles.presentedNumber}>
                 <Text>Número colocado</Text>
@@ -62,7 +64,7 @@ const StartGameScreen = props => {
                         resizeMode="contain"
                     />
                 </View>
-                <Text style={styles.title}>Vou descobrir seu número</Text>
+                <Text style={styles.title}>{computerText}</Text>
                 <Card style={styles.inputContainer}>
                     <Text>Coloque um número para eu adivinhar</Text>
                     <Input style={styles.input} 
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: 250,
-        height: 300
+        height: 250
     }
 });
 
