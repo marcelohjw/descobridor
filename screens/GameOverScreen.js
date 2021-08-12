@@ -12,7 +12,8 @@ const GameOverScreen = props => {
             <TitleText style={DefaultStyles.bodyText}>Fim de jogo</TitleText>
             <View style={styles.imageContainer}>
                 <Image 
-                    source={require('../assets/success.png')} 
+                    //source={require('../assets/success.png')}
+                    source={{uri: 'https://segredosdomundo.r7.com/wp-content/uploads/2021/03/trollface-origem-significado-e-polemicas-em-torno-do-meme-960x596.jpg'}} 
                     style={styles.image}
                     resizeMode="cover"
                 />
