@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableWithoutFeedback, Keyboard, Alert, Image } from 'react-native';
 
 import Card from '../components/Card';
 import Input from '../components/Input';
@@ -55,6 +55,13 @@ const StartGameScreen = props => {
                 Keyboard.dismiss();
             }}>
             <View style={styles.screen}>
+                <View style={styles.imageContainer}>
+                    <Image 
+                        source={{uri: 'https://i.pinimg.com/originals/ee/00/5f/ee005f7cca0279356a0799daae60bed2.jpg'}} 
+                        style={styles.image}
+                        resizeMode="contain"
+                    />
+                </View>
                 <Text style={styles.title}>Vou descobrir seu número</Text>
                 <Card style={styles.inputContainer}>
                     <Text>Coloque um número para eu adivinhar</Text>
@@ -121,6 +128,13 @@ const styles = StyleSheet.create({
     presentedNumber: {
         marginTop: '5%',
         alignItems: 'center'
+    },
+    imageContainer: {
+        flex: 0.5
+    },
+    image: {
+        width: 250,
+        height: 300
     }
 });
 
