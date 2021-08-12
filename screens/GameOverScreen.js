@@ -18,8 +18,10 @@ const GameOverScreen = props => {
                     resizeMode="cover"
                 />
             </View>
-            <BodyText>Acertei em {props.tentativas} tentativas</BodyText>
-            <BodyText>O número escolhido foi: {props.userNumber}</BodyText>
+            <View style={styles.resultContainer}>
+                <BodyText>Acertei em <Text style={styles.tentativas}>{props.tentativas}</Text> tentativas</BodyText>
+                <BodyText>O número escolhido foi: {props.userNumber}</BodyText>
+            </View>
             <Button title="Novo Jogo" onPress={props.onRestart}/>
         </View>
     );
@@ -43,6 +45,15 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         borderRadius: 150
+    },
+    tentativas: {
+        color: colors.primary
+    },
+    resultContainer: {
+        width: '80%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 5
     }
 });
 
