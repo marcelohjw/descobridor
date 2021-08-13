@@ -4,8 +4,10 @@ import { Ionicons } from '@expo/vector-icons';
 
 import NumberContainer from '../components/NumberContainer';
 import MainButton from '../components/MainButton';
+import BodyText from '../components/BodyText';
 import Card from '../components/Card';
 import DefaultStyles from '../constants/default-styles';
+import colors from '../constants/colors';
 
 const generateRandomBetween = (min, max, exclude) => {
     min = Math.ceil(min);
@@ -17,6 +19,12 @@ const generateRandomBetween = (min, max, exclude) => {
         return randoM;
     }
 };
+
+const renderListItem = (tentx) => (
+<View key={tentx} style={styles.listItem}>
+    <BodyText>Chute</BodyText>
+    <BodyText>{tentx}</BodyText>
+</View>);
 
 const GameScreen = props => {
     const initialTent = generateRandomBetween(1, 100, props.userChoice)
@@ -77,9 +85,11 @@ const GameScreen = props => {
                     />
                 </MainButton>
             </Card>
-            <ScrollView>
-                {tents.map(tentx => <View key={tentx}><Text>{tentx}</Text></View>)}
-            </ScrollView>
+            <View style={styles.list}>
+                <ScrollView>
+                    {tents.map((tentx, index) => renderListItem(tentx))}
+                </ScrollView>
+            </View>
         </View>
     );
 };
@@ -104,6 +114,20 @@ const styles = StyleSheet.create({
     image: {
         width: 250,
         height: 250
+    },
+    list: {
+        paddingTop: 25,
+        width: '50%',
+        flex: 1
+    },
+    listItem: {
+        marginVertical: 2,
+        borderColor: colors.primary,
+        backgroundColor: 'white',
+        borderWidth: 1,
+        padding: 5,
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     }
 });
 

@@ -12,7 +12,7 @@ const GameOverScreen = props => {
     let finalText = "Achei muito fácil!"
 
     if(props.tentativas >= 6) {
-        finalText = "Talvez na próxima seja mais difícil..";
+        finalText = "Talvez na próxima seja mais difícil...";
     }
 
     if (props.tentativas >= 10) {
