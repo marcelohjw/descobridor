@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
         //flex: 1,
         //flexGrow: 1,
         //justifyContent: 'flex-end'
+        //trying to test git 
     },
     listItem: {
         marginVertical: 2,
