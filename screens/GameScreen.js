@@ -22,8 +22,8 @@ const generateRandomBetween = (min, max, exclude) => {
 
 const renderListItem = (tentx) => (
 <View key={tentx} style={styles.listItem}>
-    <BodyText>Chute</BodyText>
-    <BodyText>{tentx}</BodyText>
+    <BodyText>Eu acho que é </BodyText>
+    <BodyText>{tentx}!</BodyText>
 </View>);
 
 const GameScreen = props => {
@@ -86,6 +86,7 @@ const GameScreen = props => {
                 </MainButton>
             </Card>
             <View style={styles.listContainer}>
+                {/*You can use flatlist here to render more than 20 items*/}
                 <ScrollView contentContainerStyle={styles.list}>
                     {tents.map((tentx, index) => renderListItem(tentx))}
                 </ScrollView>
@@ -134,7 +135,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 5,
         flexDirection: 'row',
-        width: '60%',
         justifyContent: 'space-around'
     }
 });

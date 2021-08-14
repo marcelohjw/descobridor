@@ -78,7 +78,7 @@ const StartGameScreen = props => {
                     <View style={styles.buttonsContainer}>
                         <View style={styles.button}>
                             <Button 
-                                title="Recomeçar" 
+                                title="Apagar" 
                                 color={colors.secondary}
                                 onPress={resetNewValue}
                             />
