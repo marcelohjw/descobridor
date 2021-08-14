@@ -85,8 +85,8 @@ const GameScreen = props => {
                     />
                 </MainButton>
             </Card>
-            <View style={styles.list}>
-                <ScrollView>
+            <View style={styles.listContainer}>
+                <ScrollView contentContainerStyle={styles.list}>
                     {tents.map((tentx, index) => renderListItem(tentx))}
                 </ScrollView>
             </View>
@@ -115,10 +115,16 @@ const styles = StyleSheet.create({
         width: 250,
         height: 250
     },
-    list: {
+    listContainer: {
         paddingTop: 25,
         width: '50%',
         flex: 1
+    },
+    list: {
+        alignItems: 'center',
+        //flex: 1,
+        //flexGrow: 1,
+        //justifyContent: 'flex-end'
     },
     listItem: {
         marginVertical: 2,
@@ -127,6 +133,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 5,
         flexDirection: 'row',
+        width: '60%',
         justifyContent: 'space-around'
     }
 });
