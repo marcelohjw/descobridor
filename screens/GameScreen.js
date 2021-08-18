@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginTop: Dimensions.get('window').height > 600 ? 15 : 5,
+        marginTop: Dimensions.get('window').height > 600 ? 10 : 5,
         width: 300,
         maxWidth: '80%'
     },
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         paddingTop: 25,
+        //width: Dimensions.get('window').width > 350 ? '60%' : '80%',
         width: '50%',
         flex: 1
     },
