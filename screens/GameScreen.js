@@ -59,7 +59,6 @@ const GameScreen = props => {
     };
 
     return (
-        <ScrollView>
             <View style={styles.screen}>
                 <View style={styles.imageContainer}>
                     <Image 
@@ -88,12 +87,11 @@ const GameScreen = props => {
                 </Card>
                 <View style={styles.listContainer}>
                     {/*You can use flatlist here to render more than 20 items*/}
-                    {/*<ScrollView contentContainerStyle={styles.list}>*/}
+                    <ScrollView contentContainerStyle={styles.list}>
                         {tents.map((tentx, index) => renderListItem(tentx))}
-                    {/*</ScrollView>*/}
+                    </ScrollView>
                 </View>
             </View>
-        </ScrollView>
     );
 };
 
