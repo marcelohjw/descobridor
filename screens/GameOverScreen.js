@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, Image, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Button, Image, Dimensions, ScrollView } from 'react-native';
 
 import BodyText from '../components/BodyText';
 import TitleText from '../components/TitleText';
@@ -20,23 +20,25 @@ const GameOverScreen = props => {
     }
 
     return (
-        <View style={styles.screen}>
-            <TitleText style={DefaultStyles.bodyText}>Fim de jogo</TitleText>
-            <BodyText style={styles.finalText}>{finalText}</BodyText>
-            <View style={styles.imageContainer}>
-                <Image 
-                    //source={require('../assets/success.png')}
-                    source={{uri: 'https://segredosdomundo.r7.com/wp-content/uploads/2021/03/trollface-origem-significado-e-polemicas-em-torno-do-meme-960x596.jpg'}} 
-                    style={styles.image}
-                    resizeMode="cover"
-                />
+        <ScrollView>
+            <View style={styles.screen}>
+                <TitleText style={DefaultStyles.bodyText}>Fim de jogo</TitleText>
+                <BodyText style={styles.finalText}>{finalText}</BodyText>
+                <View style={styles.imageContainer}>
+                    <Image 
+                        //source={require('../assets/success.png')}
+                        source={{uri: 'https://segredosdomundo.r7.com/wp-content/uploads/2021/03/trollface-origem-significado-e-polemicas-em-torno-do-meme-960x596.jpg'}} 
+                        style={styles.image}
+                        resizeMode="cover"
+                    />
+                </View>
+                <View style={styles.resultContainer}>
+                    <BodyText>Acertei em <Text style={styles.tentativas}>{props.tentativas}</Text> tentativas</BodyText>
+                    <BodyText>O número escolhido foi: {props.userNumber}</BodyText>
+                </View>
+                <MainButton onPress={props.onRestart}>Novo Jogo</MainButton>
             </View>
-            <View style={styles.resultContainer}>
-                <BodyText>Acertei em <Text style={styles.tentativas}>{props.tentativas}</Text> tentativas</BodyText>
-                <BodyText>O número escolhido foi: {props.userNumber}</BodyText>
-            </View>
-            <MainButton onPress={props.onRestart}>Novo Jogo</MainButton>
-        </View>
+        </ScrollView>
     );
 };
 

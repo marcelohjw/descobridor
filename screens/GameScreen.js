@@ -59,39 +59,41 @@ const GameScreen = props => {
     };
 
     return (
-        <View style={styles.screen}>
-            <View style={styles.imageContainer}>
-                <Image 
-                    source={{uri: 'https://i.pinimg.com/originals/ee/00/5f/ee005f7cca0279356a0799daae60bed2.jpg'}} 
-                    style={styles.image}
-                    resizeMode="contain"
-                />
-            </View>
-            <Text style={DefaultStyles.title}>Meu chute</Text>
-            <NumberContainer>{currentGuess}</NumberContainer>
-            <Card style={styles.buttonContainer}>
-                <MainButton onPress={nextGuessHandler.bind(this, 'menor')}>
-                    <Ionicons 
-                        name="md-remove"  
-                        size={24}
-                        color="white"
+        <ScrollView>
+            <View style={styles.screen}>
+                <View style={styles.imageContainer}>
+                    <Image 
+                        source={{uri: 'https://i.pinimg.com/originals/ee/00/5f/ee005f7cca0279356a0799daae60bed2.jpg'}} 
+                        style={styles.image}
+                        resizeMode="contain"
                     />
-                </MainButton>
-                <MainButton onPress={nextGuessHandler.bind(this, 'maior')}>
-                    <Ionicons 
-                        name="md-add"
-                        size={24}
-                        color="white"
-                    />
-                </MainButton>
-            </Card>
-            <View style={styles.listContainer}>
-                {/*You can use flatlist here to render more than 20 items*/}
-                <ScrollView contentContainerStyle={styles.list}>
-                    {tents.map((tentx, index) => renderListItem(tentx))}
-                </ScrollView>
+                </View>
+                <Text style={DefaultStyles.title}>Meu chute</Text>
+                <NumberContainer>{currentGuess}</NumberContainer>
+                <Card style={styles.buttonContainer}>
+                    <MainButton onPress={nextGuessHandler.bind(this, 'menor')}>
+                        <Ionicons 
+                            name="md-remove"  
+                            size={24}
+                            color="white"
+                        />
+                    </MainButton>
+                    <MainButton onPress={nextGuessHandler.bind(this, 'maior')}>
+                        <Ionicons 
+                            name="md-add"
+                            size={24}
+                            color="white"
+                        />
+                    </MainButton>
+                </Card>
+                <View style={styles.listContainer}>
+                    {/*You can use flatlist here to render more than 20 items*/}
+                    {/*<ScrollView contentContainerStyle={styles.list}>*/}
+                        {tents.map((tentx, index) => renderListItem(tentx))}
+                    {/*</ScrollView>*/}
+                </View>
             </View>
-        </View>
+        </ScrollView>
     );
 };
 
