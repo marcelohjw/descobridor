@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, TouchableWithoutFeedback, Keyboard, Alert, Image, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableWithoutFeedback, Keyboard, Alert, Image, Dimensions, ScrollView, KeyboardAvoidingView } from 'react-native';
 
 import Card from '../components/Card';
 import Input from '../components/Input';
@@ -53,48 +53,52 @@ const StartGameScreen = props => {
     }
 
     return(
-        <TouchableWithoutFeedback onPress={() => {
-                Keyboard.dismiss();
-            }}>
-            <View style={styles.screen}>
-                <View style={styles.imageContainer}>
-                    <Image 
-                        source={{uri: 'https://i.pinimg.com/originals/ee/00/5f/ee005f7cca0279356a0799daae60bed2.jpg'}} 
-                        style={styles.image}
-                        resizeMode="contain"
-                    />
-                </View>
-                <Text style={styles.title}>{computerText}</Text>
-                <Card style={styles.inputContainer}>
-                    <Text>Coloque um número para eu adivinhar</Text>
-                    <Input style={styles.input} 
-                    blurOnSubmit 
-                    autoCapitalize="none" 
-                    autoCorrect={false} 
-                    keyboardType="number-pad"
-                    maxLength={2}
-                    onChangeText={numberInputHandler}
-                    value={enteredValue} />
-                    <View style={styles.buttonsContainer}>
-                        <View style={styles.button}>
-                            <Button 
-                                title="Apagar" 
-                                color={colors.secondary}
-                                onPress={resetNewValue}
+        <ScrollView>
+            <KeyboardAvoidingView behavior="position">
+                <TouchableWithoutFeedback onPress={() => {
+                        Keyboard.dismiss();
+                    }}>
+                    <View style={styles.screen}>
+                        <View style={styles.imageContainer}>
+                            <Image 
+                                source={{uri: 'https://i.pinimg.com/originals/ee/00/5f/ee005f7cca0279356a0799daae60bed2.jpg'}} 
+                                style={styles.image}
+                                resizeMode="contain"
                             />
                         </View>
-                        <View style={styles.button}>
-                            <Button 
-                                title="Confirmar" 
-                                color={colors.primary}
-                                onPress={confirmInputHandler}
-                            />
-                        </View>
+                        <Text style={styles.title}>{computerText}</Text>
+                        <Card style={styles.inputContainer}>
+                            <Text>Coloque um número para eu adivinhar</Text>
+                            <Input style={styles.input} 
+                            blurOnSubmit 
+                            autoCapitalize="none" 
+                            autoCorrect={false} 
+                            keyboardType="number-pad"
+                            maxLength={2}
+                            onChangeText={numberInputHandler}
+                            value={enteredValue} />
+                            <View style={styles.buttonsContainer}>
+                                <View style={styles.button}>
+                                    <Button 
+                                        title="Apagar" 
+                                        color={colors.secondary}
+                                        onPress={resetNewValue}
+                                    />
+                                </View>
+                                <View style={styles.button}>
+                                    <Button 
+                                        title="Confirmar" 
+                                        color={colors.primary}
+                                        onPress={confirmInputHandler}
+                                    />
+                                </View>
+                            </View>
+                        </Card>
+                        {confirmedOutput}
                     </View>
-                </Card>
-                {confirmedOutput}
-            </View>
-        </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
+        </ScrollView>
     );
 };
 
