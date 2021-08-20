@@ -19,6 +19,20 @@ const GameOverScreen = props => {
         finalText = "Ralei pra adivinhar esse! boa!";
     }
 
+    if (Dimensions.get('window').height < 500) {
+        return (
+            <View style={styles.screen}>
+                <TitleText style={DefaultStyles.bodyText}>Fim de jogo</TitleText>
+                <BodyText style={styles.finalText}>{finalText}</BodyText>
+                <View style={styles.resultContainerPortrait}>
+                    <BodyText>Acertei em <Text style={styles.tentativas}>{props.tentativas}</Text> tentativas</BodyText>
+                    <BodyText>O número escolhido foi: {props.userNumber}</BodyText>
+                </View>
+                <MainButton onPress={props.onRestart}>Novo Jogo</MainButton>
+            </View>
+        );
+    };
+
     return (
             <View style={styles.screen}>
                 <TitleText style={DefaultStyles.bodyText}>Fim de jogo</TitleText>
@@ -72,6 +86,12 @@ const styles = StyleSheet.create({
         padding: 5
     },
     finalText: {
+        marginVertical: 5
+    },
+    resultContainerPortrait: {
+        width: '80%',
+        alignItems: 'center',
+        justifyContent: 'center',
         marginVertical: 5
     }
 });

@@ -58,6 +58,37 @@ const GameScreen = props => {
         setTent(curTents => [nextNumber ,...curTents]);
     };
 
+    if (Dimensions.get('window').height < 500) {
+        return (
+            <View style={styles.screen}>
+                <Text style={DefaultStyles.title}>Meu chute</Text>
+                <NumberContainer>{currentGuess}</NumberContainer>
+                <Card style={styles.buttonContainer}>
+                    <MainButton onPress={nextGuessHandler.bind(this, 'menor')}>
+                        <Ionicons 
+                            name="md-remove"  
+                            size={24}
+                            color="white"
+                        />
+                    </MainButton>
+                    <MainButton onPress={nextGuessHandler.bind(this, 'maior')}>
+                        <Ionicons 
+                            name="md-add"
+                            size={24}
+                            color="white"
+                        />
+                    </MainButton>
+                </Card>
+                <View style={styles.listContainer}>
+                    {/*You can use flatlist here to render more than 20 items*/}
+                    <ScrollView contentContainerStyle={styles.list}>
+                        {tents.map((tentx, index) => renderListItem(tentx))}
+                    </ScrollView>
+                </View>
+            </View>
+        );
+    };
+
     return (
             <View style={styles.screen}>
                 <View style={styles.imageContainer}>
