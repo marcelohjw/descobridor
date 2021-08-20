@@ -30,10 +30,25 @@ const GameScreen = props => {
     const initialTent = generateRandomBetween(1, 100, props.userChoice)
     const [currentGuess, setCurrentGuess] = useState(initialTent);
     const [tents, setTent] = useState([initialTent]);
+    const [availableDeviceWidth, setAvailableDeviceWidth] = useState(Dimensions.get('window').width);
+    const [availableDeviceHeight, setAvailableDeviceHeight] = useState(Dimensions.get('window').height);
     const currentLow = useRef(1);
     const currentHigh = useRef(100);
 
     const { userChoice, onGameOver } = props;
+
+    useEffect(() => {
+        const updateLayout = () => {
+            setAvailableDeviceHeight(Dimensions.get('window').height);
+            setAvailableDeviceWidth(Dimensions.get('window').width);
+        };
+
+        Dimensions.addEventListener('change', updateLayout);
+
+        return (
+            Dimensions.removeEventListener('change', updateLayout)
+        );
+    });
 
     useEffect(() => {
         if(currentGuess === userChoice) {
@@ -58,12 +73,11 @@ const GameScreen = props => {
         setTent(curTents => [nextNumber ,...curTents]);
     };
 
-    if (Dimensions.get('window').height < 500) {
+    if (availableDeviceHeight < 500) {
         return (
             <View style={styles.screen}>
                 <Text style={DefaultStyles.title}>Meu chute</Text>
-                <NumberContainer>{currentGuess}</NumberContainer>
-                <Card style={styles.buttonContainer}>
+                <View style={styles.buttonViewPortait}>
                     <MainButton onPress={nextGuessHandler.bind(this, 'menor')}>
                         <Ionicons 
                             name="md-remove"  
@@ -71,6 +85,7 @@ const GameScreen = props => {
                             color="white"
                         />
                     </MainButton>
+                <NumberContainer>{currentGuess}</NumberContainer>
                     <MainButton onPress={nextGuessHandler.bind(this, 'maior')}>
                         <Ionicons 
                             name="md-add"
@@ -78,7 +93,7 @@ const GameScreen = props => {
                             color="white"
                         />
                     </MainButton>
-                </Card>
+                </View>
                 <View style={styles.listContainer}>
                     {/*You can use flatlist here to render more than 20 items*/}
                     <ScrollView contentContainerStyle={styles.list}>
@@ -168,6 +183,12 @@ const styles = StyleSheet.create({
         padding: 5,
         flexDirection: 'row',
         justifyContent: 'space-around'
+    },
+    buttonViewPortait: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '80%',
+        alignItems: 'center'
     }
 });
 
