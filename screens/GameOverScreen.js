@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet, Button, Image, Dimensions } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 
 import BodyText from '../components/BodyText';
 import TitleText from '../components/TitleText';
@@ -8,6 +8,19 @@ import DefaultStyles from '../constants/default-styles';
 import colors from '../constants/colors';
 
 const GameOverScreen = props => {
+    const [availableDeviceHeight, setAvailableDeviceHeight] = useState(Dimensions.get('window').height);
+
+    useEffect(() => {
+        const updateLayout = () => {
+            setAvailableDeviceHeight(Dimensions.get('window').height);
+        };
+
+        Dimensions.addEventListener('change', updateLayout);
+
+        return () => {
+            Dimensions.removeEventListener('change', updateLayout)
+        };
+    });
 
     let finalText = "Achei muito fácil!"
 
@@ -19,7 +32,7 @@ const GameOverScreen = props => {
         finalText = "Ralei pra adivinhar esse! boa!";
     }
 
-    if (Dimensions.get('window').height < 500) {
+    if (availableDeviceHeight < 500) {
         return (
             <View style={styles.screen}>
                 <TitleText style={DefaultStyles.bodyText}>Fim de jogo</TitleText>

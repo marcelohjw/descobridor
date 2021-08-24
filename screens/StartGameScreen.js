@@ -12,8 +12,20 @@ const StartGameScreen = props => {
     const [enteredValue, setEnteredValue] = useState('');
     const [confirmed, setConfirmed] = useState(false);
     const [selectedNumber, setSelectedNumber] = useState();
-    const [buttonWidth, setButtonWidth] = useState(Dimensions.get('window').width / 4)
+    const [buttonWidth, setButtonWidth] = useState(Dimensions.get('window').width / 4);
+    const [availableDeviceHeight, setAvailableDeviceHeight] = useState(Dimensions.get('window').height);
 
+    useEffect(() => {
+        const updateLayout = () => {
+            setAvailableDeviceHeight(Dimensions.get('window').height);
+        };
+
+        Dimensions.addEventListener('change', updateLayout);
+
+        return () => {
+            Dimensions.removeEventListener('change', updateLayout)
+        };
+    });
 
     const numberInputHandler = inputText => {
         setEnteredValue(inputText.replace(/[^0-9]/g, ''));
@@ -63,6 +75,51 @@ const StartGameScreen = props => {
                 <MainButton onPress={() => props.onStartGame(selectedNumber)}>Iniciar</MainButton>
             </Card>
         );
+    }
+
+    if (availableDeviceHeight < 500) {
+        return (
+            <ScrollView>
+            <KeyboardAvoidingView behavior="position">
+                <TouchableWithoutFeedback onPress={() => {
+                        Keyboard.dismiss();
+                    }}>
+                    <View style={styles.screen}>
+                        <Text style={styles.title}>{computerText}</Text>
+                        <Card style={styles.inputContainer}>
+                            <Text>Coloque um número para eu adivinhar</Text>
+                            <Input style={styles.input} 
+                            blurOnSubmit 
+                            autoCapitalize="none" 
+                            autoCorrect={false} 
+                            keyboardType="number-pad"
+                            maxLength={2}
+                            onChangeText={numberInputHandler}
+                            value={enteredValue} />
+                            <View style={styles.buttonsContainer}>
+                                <View style={{width: buttonWidth}}>
+                                    <Button 
+                                        title="Apagar" 
+                                        color={colors.secondary}
+                                        onPress={resetNewValue}
+                                    />
+                                </View>
+                                <View style={{width: buttonWidth}}>
+                                    <Button 
+                                        title="Confirmar" 
+                                        color={colors.primary}
+                                        onPress={confirmInputHandler}
+                                    />
+                                </View>
+                            </View>
+                        </Card>
+                        {confirmedOutput}
+                    </View>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
+        </ScrollView>
+        );
+    
     }
 
     return(
